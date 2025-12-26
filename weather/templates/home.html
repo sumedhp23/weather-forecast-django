@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Forecast App</title>
+
+    <!-- Weather Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.12/css/weather-icons.min.css">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* 🌤 Dynamic Background Themes */
+
+        body.sunny {
+            background: linear-gradient(135deg, #74ebd5, #ffe259);
+        }
+
+        body.cloudy {
+            background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+        }
+
+        body.rainy {
+            background: linear-gradient(135deg, #4b79a1, #283e51);
+        }
+
+        body.night {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        }
+
+        body.default {
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+        }
+
+
+        .weather-card {
+            background: white;
+            width: 380px;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 15px;
+            color: #333;
+        }
+
+        .search-box {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px 0 0 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-box button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            background: #4a6cf7;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .search-box button:hover {
+            background: #3953c6;
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+        }
+
+        .city {
+            font-size: 22px;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .temp {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 10px 0;
+            color: #4a6cf7;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #555;
+            text-transform: capitalize;
+        }
+
+        /* Weather icon */
+        .weather-icon {
+            font-size: 60px;
+            margin: 10px 0;
+            animation: float 2.5s ease-in-out infinite;
+            color: #f7b733;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0); }
+        }
+
+        .details {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .weather-icon {
+            font-size: 60px;
+            margin: 12px 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .wi-night-clear,
+        .wi-night-alt-cloudy,
+        .wi-night-alt-rain {
+            color: #6c63ff;
+        }
+
+        .wi-day-sunny,
+        .wi-day-cloudy,
+        .wi-day-rain {
+            color: #f7b733;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        .page-footer {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .author-label {
+            font-size: 12px;
+            color: #f1f1f1;
+            letter-spacing: 1px;
+        }
+
+        .author-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+
+    </style>
+</head>
+
+<body class="{{ bg_class }}">
+
+
+<div class="weather-card">
+    <h1>🌤 Weather App</h1>
+
+    <form method="get" class="search-box">
+        <input type="text" name="city" placeholder="Search">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    {% if temperature %}
+        <div class="weather-info">
+
+            <div class="city">{{ city }}</div>
+            <div class="details">
+                🕒 Local Time: {{ city_time }} <br>
+                🇮🇳 IST: {{ ist_time }}
+            </div>
+
+
+            <!-- Weather Icon Logic -->
+            <div class="weather-icon">
+                {% if is_day %}
+                    {% if "clear" in description %}
+                        <i class="wi wi-day-sunny"></i>
+                    {% elif "cloud" in description %}
+                        <i class="wi wi-day-cloudy"></i>
+                    {% elif "rain" in description %}
+                        <i class="wi wi-day-rain"></i>
+                    {% else %}
+                        <i class="wi wi-day-cloudy"></i>
+                    {% endif %}
+                {% else %}
+                    {% if "clear" in description %}
+                        <i class="wi wi-night-clear"></i>
+                    {% elif "cloud" in description %}
+                        <i class="wi wi-night-alt-cloudy"></i>
+                    {% elif "rain" in description %}
+                        <i class="wi wi-night-alt-rain"></i>
+                    {% else %}
+                        <i class="wi wi-night-alt-cloudy"></i>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+
+            <div class="temp">{{ temperature }}°C</div>
+            <div class="description">{{ description }}</div>
+
+            <div class="details">
+                💧 Humidity: {{ humidity }}%
+            </div>
+            <div class="footer">
+                Powered by OpenWeather API <br>
+            </div>
+
+
+        </div>
+    {% endif %}
+
+</div>
+<div class="page-footer">
+    <div class="author-label">Author</div>
+    <div class="author-name">Sumedh Patil</div>
+</div>
+
+
+</body>
+</html>
