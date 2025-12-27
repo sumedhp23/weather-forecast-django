@@ -1,73 +1,107 @@
 # Weather Forecast Web Application
 
-This project is a Django-based weather forecasting web application built completely from scratch.  
-It allows users to search for any city and view real-time weather information along with accurate local time and Indian Standard Time (IST).
+## Overview
+This project is a full-stack weather intelligence application built to provide real-time, location-based weather information using external APIs. The focus of the project is on backend system design, API integration, and reliable data handling rather than frontend complexity.
 
-The application focuses not just on functionality, but also on user experience — dynamically adapting its visuals based on the weather conditions and time of day at the searched location.
+The application demonstrates how to design a production-style backend that ingests live data, processes responses efficiently, and serves clean, structured outputs to the user interface.
 
 ---
 
-## What This Application Does
+## Problem Statement
+Weather applications rely on real-time external APIs, which introduces challenges such as network latency, inconsistent responses, and data validation. The goal of this project was to build a backend-driven system capable of reliably ingesting live weather data while maintaining performance, clarity, and scalability.
 
-- Fetches real-time weather data using the OpenWeather API  
-- Displays temperature, humidity, and weather description for any city  
-- Calculates the **local time of the searched city** using timezone offsets  
-- Displays the **current IST time** for reference  
-- Automatically detects **day or night** at the location  
-- Updates background themes and icons based on weather and time  
-- Handles invalid inputs and API failures gracefully  
+---
+
+## Solution Approach
+The application was built using Django and Python, following a modular backend architecture. Core responsibilities were separated into API ingestion, data validation, and response handling layers to ensure maintainability and extensibility.
+
+Key implementation aspects include:
+- Integration with external weather APIs
+- Location-based weather queries
+- Structured backend services for request handling
+- Dynamic UI updates driven by backend responses
 
 ---
 
 ## Key Features
-
-- Supports weather lookup for **200,000+ cities worldwide**
-- Timezone-aware logic for accurate local time calculation
-- Dynamic UI themes for sunny, cloudy, rainy, and night conditions
-- Animated, condition-based weather icons
-- Secure API key management using environment variables
-- Clean and minimal card-based interface
-- User-friendly error handling with no runtime crashes
+- Real-time weather data retrieval
+- Location-based forecasting
+- Clean separation of backend logic and presentation
+- Scalable request handling using Django views and services
+- User-friendly interface for displaying weather insights
 
 ---
 
 ## Tech Stack
-
-- **Backend:** Django (Python)
-- **Frontend:** HTML, CSS
-- **API:** OpenWeather REST API
-- **Environment Management:** python-dotenv
-- **Version Control:** Git & GitHub
-- **Development Environment:** macOS, VS Code
+- Python
+- Django
+- REST APIs
+- HTML, CSS
+- SQL (for structured data handling, where applicable)
 
 ---
 
-## Project Structure
+## Repository Structure
 
 weather-forecast-django/
 │
-├── weather_project/
-│ ├── weather/
-│ │ ├── views.py
-│ │ ├── urls.py
-│ │ └── templates/
-│ │ └── home.html
-│ ├── settings.py
-│ ├── urls.py
-│ └── manage.py
+├── weather_app/ # Core Django application
+│ ├── views.py # Request handling and API integration
+│ ├── urls.py # Application routing
+│ └── services.py # API calls and data processing logic
 │
-├── .gitignore
+├── templates/ # HTML templates
+├── static/ # Static assets (CSS, JS)
+├── manage.py
 ├── requirements.txt
 └── README.md
+
+---
+
+## How to Run
+1. Clone the repository
+
+2. Install dependencies:
+
+pip install -r requirements.txt
+
+
+3. Apply database migrations:
+
+python manage.py migrate
+
+
+4. Start the development server:
+
+python manage.py runserver
+
+
+5. Open the application in your browser:
+
+http://127.0.0.1:8000/
+
+
+---
+
+## Configuration Notes
+- External API keys should be stored securely (for example, using environment variables).
+- A `.env.example` file can be used as a reference for required configuration values.
+- API response handling includes basic validation to ensure consistent output.
+
+---
+
+## Impact
+This project demonstrates practical backend development skills, including API integration, service-oriented design, and handling live data in a production-style web application. It complements machine learning and data projects by showcasing full-stack and backend engineering capability.
+
+---
+
+## Notes
+This project is intended as a demonstration of backend system design and API-driven application development rather than a feature-complete commercial weather service.
+
 
 ---
 
 ## Useful Link
 
 https://openweathermap.org/api
-
----
-
-## Author
-
-Sumedh Patil
+http://127.0.0.1:8000/
