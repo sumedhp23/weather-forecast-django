@@ -92,6 +92,19 @@ http://127.0.0.1:8000/
 
 ---
 
+## Deployment
+
+This application is deployed on Render using Gunicorn as the production server.
+
+**Key deployment features:**
+- Secure configuration via environment variables
+- Automated builds with dependency installation, static file collection, and database migrations
+- GitHub-integrated CI/CD — every push triggers an automatic redeploy
+
+**Live Demo:** https://<your-app>.onrender.com
+
+---
+
 ## Impact
 This project demonstrates practical backend development skills, including API integration, service-oriented design, and handling live data in a production-style web application. It complements machine learning and data projects by showcasing full-stack and backend engineering capability.
 
