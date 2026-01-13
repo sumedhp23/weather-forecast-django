@@ -106,3 +106,9 @@ This project is intended as a demonstration of backend system design and API-dri
 ## Useful Link
 
 https://openweathermap.org/api
+https://weather-forecast-django.onrender.com
+
+---
+
+## Author
+Sumedh Patil
