@@ -106,4 +106,3 @@ This project is intended as a demonstration of backend system design and API-dri
 ## Useful Link
 
 https://openweathermap.org/api
-http://127.0.0.1:8000/
