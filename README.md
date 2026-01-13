@@ -44,6 +44,7 @@ The application focuses not just on functionality, but also on user experience �
 
 ## Project Structure
 
+```bash
 weather-forecast-django/
 │
 ├── weather_project/
@@ -59,6 +60,7 @@ weather-forecast-django/
 ├── .gitignore
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
