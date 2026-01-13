@@ -101,7 +101,7 @@ This application is deployed on Render using Gunicorn as the production server.
 - Automated builds with dependency installation, static file collection, and database migrations
 - GitHub-integrated CI/CD — every push triggers an automatic redeploy
 
-**Live Demo:** https://<your-app>.onrender.com
+**Live Demo:** https://weather-forecast-django.onrender.com
 
 ---
 
